@@ -1,0 +1,18 @@
+{
+  "Nom": "Examen",
+  "Date": "",
+  "Fiche": [
+    {
+      "idDeLaFiche": "",
+      "ImportanceDeLaFiche": "",
+      "Apprentissage": [
+        {
+          "id": "1",
+          "Status": "Appris",
+          "DateDebut": "",
+          "DateFin": ""
+        }
+      ]
+    }
+  ]
+}
