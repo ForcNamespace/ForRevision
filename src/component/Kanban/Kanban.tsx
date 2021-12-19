@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { RevisionContext } from "../..";
-import { Cour } from "../../model/Cours";
 import { observer } from "mobx-react-lite";
 
 const Kanban = observer(() => {
@@ -8,13 +7,7 @@ const Kanban = observer(() => {
   return (
     <div className="flex flex-col">
       <p>{Revision.Cours.length}</p>
-      <button
-        onClick={() =>
-          Revision.Cours.push({ id: 0, Name: "JOJO", IdMatter: "0" } as Cour)
-        }
-      >
-        CLICK MEEE
-      </button>
+      <button onClick={() => Revision.AddCour("jojo", 1)}>CLICK MEEE</button>
     </div>
   );
 });
