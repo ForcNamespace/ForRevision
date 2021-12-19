@@ -27,7 +27,7 @@ class Revision {
     } as Matter);
     return id;
   }
-  AddCour(name: string, IdMatter: string) {
+  AddCour(name: string, IdMatter: number) {
     var id =
       this.Cours.length === 0 ? 0 : this.Cours[this.Cours.length - 1].id + 1;
     this.Cours.push({
@@ -37,7 +37,7 @@ class Revision {
     } as Cour);
     return id;
   }
-  AddFiche(name: string, IdCours: string, Difficulty: number) {
+  AddFiche(name: string, IdCours: number, Difficulty: number) {
     var id =
       this.Fiches.length === 0 ? 0 : this.Fiches[this.Fiches.length - 1].id + 1;
     this.Fiches.push({
