@@ -5,7 +5,7 @@ import { RevisionContext } from "..";
 const Examen = observer(() => {
   const Revision = useContext(RevisionContext);
   return (
-    <div>
+    <div className="flex">
       {Revision.Examens.map(({ id, Name, Date, Fiche }) => (
         <div key={id}>
           <p>

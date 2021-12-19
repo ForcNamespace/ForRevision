@@ -8,11 +8,11 @@ const Nav = () => {
       <Link className="mr-4" to={"/"}>
         Home
       </Link>
-      <Link className="mr-4" to={"/cour"}>
-        Cours
-      </Link>
       <Link className="mr-4" to={"/matter"}>
         Matter
+      </Link>
+      <Link className="mr-4" to={"/cour"}>
+        Cours
       </Link>
       <Link className="mr-4" to={"/fiche"}>
         Fiche
