@@ -14,6 +14,14 @@ class Revision {
 
   constructor() {
     makeAutoObservable(this);
+    var state = localStorage.getItem("Revision");
+    if (state !== null) {
+      var object = JSON.parse(state);
+      this.Fiches = object.Fiches as FicheRevision[];
+      this.Cours = object.Cours as Cour[];
+      this.Matters = object.Matters as Matter[];
+      this.Examens = object.Examens as Examen[];
+    }
   }
 
   AddMatter(name: string) {
@@ -25,6 +33,7 @@ class Revision {
       Name: name,
       id: id,
     } as Matter);
+    this.BackUpObject();
     return id;
   }
   AddCour(name: string, IdMatter: number) {
@@ -35,6 +44,7 @@ class Revision {
       IdMatter: IdMatter,
       id: id,
     } as Cour);
+    this.BackUpObject();
     return id;
   }
   AddFiche(name: string, IdCours: number, Difficulty: number) {
@@ -46,6 +56,7 @@ class Revision {
       Difficulty: Difficulty,
       id: id,
     } as FicheRevision);
+    this.BackUpObject();
     return id;
   }
   AddExamen(name: string, date: Date) {
@@ -58,6 +69,7 @@ class Revision {
       Date: date,
       id: id,
     } as Examen);
+    this.BackUpObject();
     return id;
   }
   AddFicheToExamen(id: number, importance: number, idFiche: number) {
@@ -65,6 +77,18 @@ class Revision {
       idDeLaFiche: idFiche,
       ImportanceDeLaFiche: importance,
     } as FicheExamen);
+    this.BackUpObject();
+  }
+  BackUpObject() {
+    localStorage.setItem(
+      "Revision",
+      JSON.stringify({
+        Fiches: this.Fiches,
+        Cours: this.Cours,
+        Matters: this.Matters,
+        Examens: this.Examens,
+      })
+    );
   }
 }
 
