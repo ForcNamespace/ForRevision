@@ -3,4 +3,5 @@ export interface FicheRevision {
   Name: string;
   IdCours: number;
   Difficulty: number;
+  Color: string;
 }

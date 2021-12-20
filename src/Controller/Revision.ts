@@ -47,7 +47,7 @@ class Revision {
     this.BackUpObject();
     return id;
   }
-  AddFiche(name: string, IdCours: number, Difficulty: number) {
+  AddFiche(name: string, IdCours: number, Difficulty: number, Color: string) {
     var id =
       this.Fiches.length === 0 ? 0 : this.Fiches[this.Fiches.length - 1].id + 1;
     this.Fiches.push({
@@ -55,6 +55,7 @@ class Revision {
       IdCours: IdCours,
       Difficulty: Difficulty,
       id: id,
+      Color: Color,
     } as FicheRevision);
     this.BackUpObject();
     return id;
@@ -89,6 +90,30 @@ class Revision {
         Examens: this.Examens,
       })
     );
+  }
+  DelMatter(objectId: number) {
+    var index = this.Matters.findIndex(({ id }) => id === objectId);
+    if (index !== -1) {
+      this.Matters.splice(index, 1);
+    }
+  }
+  DelCour(objectId: number) {
+    var index = this.Matters.findIndex(({ id }) => id === objectId);
+    if (index !== -1) {
+      this.Cours.splice(index, 1);
+    }
+  }
+  DelFiche(objectId: number) {
+    var index = this.Matters.findIndex(({ id }) => id === objectId);
+    if (index !== -1) {
+      this.Fiches.splice(index, 1);
+    }
+  }
+  DelExamen(objectId: number) {
+    var index = this.Matters.findIndex(({ id }) => id === objectId);
+    if (index !== -1) {
+      this.Examens.splice(index, 1);
+    }
   }
 }
 

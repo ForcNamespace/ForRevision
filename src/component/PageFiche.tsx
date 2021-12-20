@@ -7,17 +7,19 @@ import Modal from "./modal";
 const Fiche = observer(() => {
   const Revision = useContext(RevisionContext);
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
-  const [objectInEdit, setObjectInEdit] = useState<FicheRevision>(
-    {} as FicheRevision
-  );
+  const [objectInEdit, setObjectInEdit] = useState<FicheRevision>({
+    Color: "#B53419",
+    Difficulty: 1,
+  } as FicheRevision);
   const setModalClose = () => {
     setModalIsOpen(false);
     Revision.AddFiche(
       objectInEdit.Name,
       objectInEdit.IdCours,
-      objectInEdit.Difficulty
+      objectInEdit.Difficulty,
+      objectInEdit.Color
     );
-    setObjectInEdit({} as FicheRevision);
+    setObjectInEdit({ Color: "#B53419", Difficulty: 1 } as FicheRevision);
   };
   return (
     <div>
@@ -49,8 +51,10 @@ const Fiche = observer(() => {
             <select
               value={objectInEdit.IdCours}
               onChange={(e) => {
-                objectInEdit.IdCours = +e.currentTarget.value;
-                setObjectInEdit(objectInEdit);
+                setObjectInEdit({
+                  ...objectInEdit,
+                  IdCours: parseInt(e.currentTarget.value),
+                });
               }}
             >
               <option hidden defaultChecked>
@@ -72,7 +76,19 @@ const Fiche = observer(() => {
                 min={1}
                 max={10}
                 onChange={(e) => {
-                  objectInEdit.Difficulty = +e.currentTarget.value;
+                  objectInEdit.Difficulty = e.currentTarget.valueAsNumber;
+                  setObjectInEdit(objectInEdit);
+                }}
+              />
+            </label>
+            <label htmlFor="color">
+              Choisis la couleur
+              <input
+                name="color"
+                type="color"
+                value={objectInEdit.Color}
+                onChange={(e) => {
+                  objectInEdit.Color = e.currentTarget.value;
                   setObjectInEdit(objectInEdit);
                 }}
               />
