@@ -7,6 +7,7 @@ import Modal from "./modal";
 const Fiche = observer(() => {
   const Revision = useContext(RevisionContext);
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [difficulty, setDifficulty] = useState<number>(1);
   const [objectInEdit, setObjectInEdit] = useState<FicheRevision>({
     Color: "#B53419",
     Difficulty: 1,
@@ -16,7 +17,7 @@ const Fiche = observer(() => {
     Revision.AddFiche(
       objectInEdit.Name,
       objectInEdit.IdCours,
-      objectInEdit.Difficulty,
+      difficulty,
       objectInEdit.Color
     );
     setObjectInEdit({ Color: "#B53419", Difficulty: 1 } as FicheRevision);
@@ -72,12 +73,11 @@ const Fiche = observer(() => {
               <input
                 name="difficulté"
                 type="number"
-                value={objectInEdit.Difficulty}
+                value={difficulty}
                 min={1}
                 max={10}
                 onChange={(e) => {
-                  objectInEdit.Difficulty = e.currentTarget.valueAsNumber;
-                  setObjectInEdit(objectInEdit);
+                  setDifficulty(e.currentTarget.valueAsNumber);
                 }}
               />
             </label>
